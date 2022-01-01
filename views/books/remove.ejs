@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <style type="text/css" media="screen">
+        body {
+            background-color: skyblue;
+            text-decoration-color: white;
+            font-size:1em;
+        }
+    </style>
+</head>
+ 
+<body>
+    Total books = <%=data.totalItems%><br/>
+     
+    <ul>
+        <% !data ? 'No data is there' : data.items.forEach((item)=>{%>
+        <li><h3>Title : <%=item.volumeInfo.title%></h3></li>
+        <li>Description<%=item.volumeInfo.description%></li>
+        <li>PageCount: <%=item.volumeInfo.pageCount%></li>
+        <li>Average Rating: <%=item.volumeInfo.averageRating%></li>
+        <a href="/api/v1/books/remove/<%=item.id%>/<%=shelfId%>"> REMOVE</a>
+        <br/><br/>
+        <%});%>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <style type="text/css" media="screen">
+        body {
+            background-color: skyblue;
+            text-decoration-color: white;
+            font-size:1em;
+        }
+    </style>
+</head>
+ 
+<body>
+    Total books = <%=data.totalItems%><br/>
+     
+    <ul>
+        <% data.items.forEach((item)=>{%>
+        <li><h3>Title : <%=item.volumeInfo.title%></h3></li>
+        <li>Description<%=item.volumeInfo.description%></li>
+        <li>PageCount: <%=item.volumeInfo.pageCount%></li>
+        <li>Average Rating: <%=item.volumeInfo.averageRating%></li>
+
+        <br/><br/>
+        <form action="/api/v1/books/add/<%=item.id%>/<%=shelfId%>">
+            <label for="shelfId">Choose a bookshelf:</label>
+            <select id="shelf" name="shelf">
+              <option value="ToRead">ToRead</option>
+              <option value="HaveRead">HaveRead</option>
+              <option value="fiat">Fiat</option>
+              <option value="audi">Audi</option>
+            </select>
+            <input type="submit" value="Bookshelf">
+          </form>
+        <%});%>
+    </ul>
+    
+</body>
+</html>
